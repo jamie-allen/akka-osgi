@@ -14,7 +14,6 @@ Before you install this bundle, you'll need to add library bundles for Akka and 
 How to install them is explained below.  This information is shamelessly stolen from the sbtosgi-example project referenced above.
 
 Download the [Felix Framework Distribution](http://felix.apache.org/site/downloads.cgi), and uncompress it somewhere you decide (let's say, in `~/myOsgiProjects`). Next, cd into the created directory and start felix.
-
 ```
 $ tar -xzf org.apache.felix.main.distribution-4.0.2.tar.gz
 $ cd felix-framework-4.0.2
@@ -27,8 +26,7 @@ Welcome to Apache Felix Gogo
 
 g!
 ```
-Check to see what bundles are running:
-
+Note that the g! is the shell prompt.  Every command you see below will include the g!, but that is not part of the command to be entered.  Sorry to say, it has no history nor ability to backspace, so don't bother trying to use your arrow keys with it.  To see what bundles are running:
 ```
 g! lb
 START LEVEL 1
@@ -39,16 +37,12 @@ START LEVEL 1
     3|Active     |    1|Apache Felix Gogo Runtime (0.10.0)
     4|Active     |    1|Apache Felix Gogo Shell (0.10.0)
 ```
-
 Set the initial bundle level to 2, and move the framework level to that level right away.  For more information about bundle start levels, [see here](http://aaronz-sakai.blogspot.com/2009/05/osgi-system-and-bundle-start-levels.html)
-
 ```
 g! bundlelevel -i 2
 g! frameworklevel 2
 ```
-
 Use the `install` command to install the bundles and start it.
-
 ```
 g! install file:///<path to felix-akka-example code>/lib/config-0.4.2-SNAPSHOT.jar
 Bundle ID: 5
@@ -59,3 +53,5 @@ g! start 6
 g! install file:///<path to felix-akka-example code>/target/scala-2.9.2/felix-akka-poc_2.9.2-0.1-SNAPSHOT.jar
 Bundle ID: 7
 g! start 7
+```
+That's it.  If everything has gone correctly, you will see that the MyActor instance has received a message with a value of "2".
