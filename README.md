@@ -44,7 +44,7 @@ Set the initial bundle level to 2, and move the framework level to that level ri
 g! bundlelevel -i 2
 g! frameworklevel 2
 ```
-Use `install` to load the bundles into the OSGi runtime, and then `start` them.
+Use `install` to load the bundles into the OSGi runtime, and then `start` them by bundle ID.  If you ever have to uninstall a bundle to replace it with a new version, use `uninstall` and the bundle ID to remove.
 ```
 g! install file:///<path to felix-akka-example code>/lib/org.scala-ide.scala.compiler_2.9.2.v20120330-163119-949a4804e4-vfinal.jar
 Bundle ID: 5
