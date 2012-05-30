@@ -20,8 +20,7 @@ $ tar -xzf org.apache.felix.main.distribution-4.0.2.tar.gz
 $ cd felix-framework-4.0.2
 $ java -jar bin/felix
 ```
-You should see
-
+You should see:
 ```
 ____________________________
 Welcome to Apache Felix Gogo
