@@ -57,7 +57,7 @@ g! install file:///<path to felix-akka-example code>/target/scala-2.9.2/felix-ak
 Bundle ID: 8
 g! start 8
 ```
-Installing the Scala bundles will not actually start it.  If you look at the status of the bundle, you will see that it is merely `resolved`, which is fine.  The OSGi context should look like this:
+Starting the Scala bundle will not actually start it, but it will resolve it.  If you look at the status of the bundle, you will see that it is merely `resolved`, which is fine.  The OSGi context should look like this:
 ```
 g! lb
 START LEVEL 1

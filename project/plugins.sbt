@@ -1,1 +1,3 @@
-addSbtPlugin("com.typesafe.sbtosgi" % "sbtosgi" % "0.1.0")
+resolvers += Classpaths.typesafeSnapshots
+
+addSbtPlugin("com.typesafe.sbtosgi" % "sbtosgi" % "0.3.0-SNAPSHOT")
