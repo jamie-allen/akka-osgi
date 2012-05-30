@@ -1,7 +1,7 @@
 # A Proof of Concept for Akka and OSGi
 
 ## Overview
-A simple test project to test creating an Akka v2.1-SNAPSHOT ActorSystem inside of an OSGi context.  This project is based on the [sbtosgi-examples](https://github.com/oscarvarto/sbtosgi-examples) project.
+A simple test project to test creating an Akka v2.1-SNAPSHOT ActorSystem inside of an OSGi context.  Akka 2.1 will include OSGi support, bundling all of the subprojects.  This project is based on the [sbtosgi-examples](https://github.com/oscarvarto/sbtosgi-examples) project.
 
 ## Build and Bundle This Project
 1. Clone this repo
