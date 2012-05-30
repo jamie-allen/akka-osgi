@@ -37,12 +37,12 @@ START LEVEL 1
     3|Active     |    1|Apache Felix Gogo Runtime (0.10.0)
     4|Active     |    1|Apache Felix Gogo Shell (0.10.0)
 ```
-Set the initial bundle level to 2, and move the framework level to that level right away.  For more information about bundle start levels, [see here](http://aaronz-sakai.blogspot.com/2009/05/osgi-system-and-bundle-start-levels.html)
+Set the initial bundle level to 2, and move the framework level to that level right away.  For more information about bundle start levels, [see here](http://aaronz-sakai.blogspot.com/2009/05/osgi-system-and-bundle-start-levels.html).
 ```
 g! bundlelevel -i 2
 g! frameworklevel 2
 ```
-Use the `install` command to install the bundles and start it.
+Use the `install` command to install the bundles, and then start them.
 ```
 g! install file:///<path to felix-akka-example code>/lib/org.scala-ide.scala.compiler_2.9.2.v20120330-163119-949a4804e4-vfinal.jar
 Bundle ID: 5
@@ -57,7 +57,7 @@ g! install file:///<path to felix-akka-example code>/target/scala-2.9.2/felix-ak
 Bundle ID: 8
 g! start 8
 ```
-Installing the Scala and Akka bundles will not actually start them.  If you look at the status of the bundles, you will see that they're merely `resolved`, which is fine.  The OSGi context should look like this:
+Installing the Scala bundles will not actually start it.  If you look at the status of the bundle, you will see that it is merely `resolved`, which is fine.  The OSGi context should look like this:
 ```
 g! lb
 START LEVEL 1
@@ -70,6 +70,6 @@ START LEVEL 1
     5|Resolved   |    2|Scala Library for Eclipse (2.9.2.v20120330-163119-949a4804e4-vfinal)
     6|Active     |    2|com.typesafe.config (0.4.2.SNAPSHOT)
     7|Active     |    2|com.typesafe.akka.actor (2.1.0.SNAPSHOT)
-    8|Resolved   |    2|default.Felix Akka POC (0.1.0.SNAPSHOT)
+    8|Active     |    2|default.Felix Akka POC (0.1.0.SNAPSHOT)
 ```
 That's it.  If everything has gone correctly, you will see that the MyActor instance has received a message with a value of "2".
