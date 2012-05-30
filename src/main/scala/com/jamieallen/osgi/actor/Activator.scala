@@ -6,10 +6,10 @@ import org.osgi.framework.BundleContext
 import akka.actor.{ ActorSystem, Props, actorRef2Scala }
 
 class Activator extends BundleActivator {
-  val system = ActorSystem()
+  val system1 = ActorSystem("System1")
 
   override def start(context: BundleContext) {
-    val myActor = system.actorOf(Props[MyActor])
+    val myActor = system1.actorOf(Props[MyActor])
 
     Thread.sleep(100)
     myActor ! 2
@@ -17,6 +17,6 @@ class Activator extends BundleActivator {
   }
 
   override def stop(context: BundleContext) {
-    system.shutdown
+    system1.shutdown
   }
 }
