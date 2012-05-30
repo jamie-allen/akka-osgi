@@ -20,7 +20,7 @@ $ tar -xzf org.apache.felix.main.distribution-4.0.2.tar.gz
 $ cd felix-framework-4.0.2
 $ java -jar bin/felix
 ```
-You'll see
+You should see
 
 ```
 ____________________________
@@ -28,7 +28,7 @@ Welcome to Apache Felix Gogo
 
 g!
 ```
-Let's check what's running on our newly installed framework:
+Check to see what bundles are running:
 
 ```
 g! lb
@@ -41,14 +41,14 @@ START LEVEL 1
     4|Active     |    1|Apache Felix Gogo Shell (0.10.0)
 ```
 
-Next we set the initial bundle level to 2, and move the framework level to that level right away
+Set the initial bundle level to 2, and move the framework level to that level right away.  For more information about bundle start levels, [see here](http://aaronz-sakai.blogspot.com/2009/05/osgi-system-and-bundle-start-levels.html)
 
 ```
 g! bundlelevel -i 2
 g! frameworklevel 2
 ```
 
-Then we use the `install` command to install the bundles and start it.
+Use the `install` command to install the bundles and start it.
 
 ```
 g! install file:///<path to felix-akka-example code>/lib/config-0.4.2-SNAPSHOT.jar
