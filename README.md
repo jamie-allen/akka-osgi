@@ -6,10 +6,12 @@ A simple test project to test creating an Akka v2.1-SNAPSHOT ActorSystem inside 
 2. Make sure you're using SBT v0.11.2 (required for the sbtosgi dependency)
 2. At the command line at the root of the project, type "sbt"
 3. At the sbt prompt, type "update compile osgi-bundle"
-4. Before you install this bundle, you'll need to add library bundles for Akka and Typesafe Config dependencies.  See the lib folder for my pre-built artifacts, in case you don't want to build your own.  Note that the Akka bundle is a 2.1-SNAPSHOT as of revision "35aaa220aa0c65333e75a7c199fe9ebc782c1b89" on May 29, 2012, but the dependency on Typesafe Config has been changed to 0.4.2-SNAPSHOT.  Also, the Config is a 0.4.2-SNAPSHOT as of revision "b3ac8d0539d1df60ff3e5daaf5d619411f426f24" on May 24, 2012.
 
 # Starting the OSGi Container and Installing This Test
-This information is shamelessly stolen from the sbtosgi-example project referenced above.
+
+Before you install this bundle, you'll need to add library bundles for Akka and Typesafe Config dependencies.  See the lib folder for my pre-built artifacts, in case you don't want to build your own.  Note that the Akka bundle is a 2.1-SNAPSHOT as of revision "35aaa220aa0c65333e75a7c199fe9ebc782c1b89" on May 29, 2012, but the dependency on Typesafe Config has been changed to 0.4.2-SNAPSHOT.  Also, the Config is a 0.4.2-SNAPSHOT as of revision "b3ac8d0539d1df60ff3e5daaf5d619411f426f24" on May 24, 2012.  
+
+How to install them is explained below.  This information is shamelessly stolen from the sbtosgi-example project referenced above.
 
 Download the [Felix Framework Distribution](http://felix.apache.org/site/downloads.cgi), and uncompress it somewhere you decide (let's say, in `~/myOsgiProjects`). Next, cd into the created directory and start felix.
 
