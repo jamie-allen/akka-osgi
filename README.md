@@ -12,9 +12,9 @@ I have not tried this under Equinox.
 
 ## Build and Bundle This Project
 1. Clone this repo
-2. Make sure you're using SBT v0.11.2 (required for the sbtosgi dependency)
-2. At the command line at the root of the project, type "sbt"
-3. At the sbt prompt, type "update compile osgi-bundle"
+2. Make sure you're using SBT v0.11.2 (required for the sbtosgi dependency).
+3. At the command line at the root of the project, type "sbt"
+4. At the sbt prompt, type "update compile osgi-bundle"
 
 ## Installing Karaf
 How to install them is explained below.  This information is shamelessly stolen from the sbtosgi-example project referenced above, though altered to reflect the runtime and requirements of this project.
