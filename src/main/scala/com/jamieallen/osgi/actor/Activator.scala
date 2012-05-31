@@ -10,14 +10,14 @@ class Activator extends BundleActivator {
   var system1: Option[ActorSystem] = None
 
   override def start(context: BundleContext) {
-    val classLoader = ActorSystem.getClass.getClassLoader
+    val classLoader = classOf[ActorSystem].getClassLoader
     val config: Config = {
       val config = ConfigFactory.defaultReference(classLoader)
       config.checkValid(ConfigFactory.defaultReference(classLoader), "akka")
       config
     }
 
-    println("Trying AKKA class loader.  Got config: " + config)
+    println("Got config: " + config)
     system1 = Some(ActorSystem("System1", config, classLoader))
 
     val myActor = system1.get.actorOf(Props[MyActor])

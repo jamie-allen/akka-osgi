@@ -1,34 +1,58 @@
 # A Proof of Concept for Akka and OSGi
 
 ## Overview
+
 A simple test project to test creating an Akka v2.1-SNAPSHOT ActorSystem inside of an OSGi context.  Akka 2.1 will include OSGi support, bundling all of the subprojects.  This project is based on the [sbtosgi-examples](https://github.com/oscarvarto/sbtosgi-examples) project.
 
+## Felix versus Karaf versus Equinox
+
+Initially, I attempted to execute this application in Felix, but ran into issues with the exposing of sun.misc.Unsafe.  It is possible to configure Felix for bootdelegation of the package, but there is something wrong with the way akka.util.Unsafe is exposed at runtime, and I'm not sure how to get around that.  [Gert Vanthienen](https://github.com/gertv) was able to get tests of his pull requests into Akka for OSGi support to work with Karaf and no extra configuration, so I switched to Karaf as well.
+
+For what it's worth, the shell in Karaf is so much nicer than Felix as well.  Felix has no history, no autocomplete and doesn't allow you to edit commands that you mistype.  Karaf has all of these features and is so much nicer to use.
+
+I have not tried this under Equinox.
+
 ## Build and Bundle This Project
+
 1. Clone this repo
 2. Make sure you're using SBT v0.11.2 (required for the sbtosgi dependency)
 2. At the command line at the root of the project, type "sbt"
 3. At the sbt prompt, type "update compile osgi-bundle"
 
+## Installing Karaf
+
+How to install them is explained below.  This information is shamelessly stolen from the sbtosgi-example project referenced above, though altered to reflect the runtime and requirements of this project.
+
+To download Apache Karaf, visit [this page](http://karaf.apache.org/index/community/download.html) and download the appropriate distribution for your environment.  Unzip it somewhere on your local drive, then go to that folder and start Karaf.
+```
+$ tar -xzf apache-karaf-2.2.7.tar.gz
+$ cd apache-karaf-2.2.7
+$ java -jar bin/karaf
+```
+You should see:
+```
+➜  apache-karaf-2.2.7  bin/karaf 
+        __ __                  ____      
+       / //_/____ __________ _/ __/      
+      / ,<  / __ `/ ___/ __ `/ /_        
+     / /| |/ /_/ / /  / /_/ / __/        
+    /_/ |_|\__,_/_/   \__,_/_/         
+
+  Apache Karaf (2.2.7)
+
+Hit '<tab>' for a list of available commands
+and '[cmd] --help' for help on a specific command.
+Hit '<ctrl-d>' or 'osgi:shutdown' to shutdown Karaf.
+
+karaf@root> 
+```
+For a quick primer on how to use Karaf, [see here](http://karaf.apache.org/manual/latest-2.2.x/quick-start.html).
+
 ## Start the OSGi Container and Install the Required Bundles
 
 Before you install this bundle, you'll need to add library bundles for the Scala language library, Akka-Actor and Typesafe Config as dependencies.  See the lib folder for my pre-built artifacts, in case you don't want to build your own.  Note that the Akka bundle is a 2.1-SNAPSHOT as of revision "35aaa220aa0c65333e75a7c199fe9ebc782c1b89" on May 29, 2012, but the dependency on Typesafe Config has been changed to 0.4.2-SNAPSHOT.  Also, the Config is a 0.4.2-SNAPSHOT as of revision "b3ac8d0539d1df60ff3e5daaf5d619411f426f24" on May 24, 2012.  The Scala library is from my Scala IDE Eclipse distribution.
 
-How to install them is explained below.  This information is shamelessly stolen from the sbtosgi-example project referenced above, though altered to reflect the requirements of this project.
-
-Download the [Felix Framework Distribution](http://felix.apache.org/site/downloads.cgi) and unzip it somewhere on your local drive.  Go to that folder and start felix.
-```
-$ tar -xzf org.apache.felix.main.distribution-4.0.2.tar.gz
-$ cd felix-framework-4.0.2
-$ java -jar bin/felix
-```
-You should see:
-```
-____________________________
-Welcome to Apache Felix Gogo
-
-g!
-```
-Note that the g! is the shell prompt.  Every command you see below will include the g!, but that is not part of the command to be entered.  Sorry to say, it has no history nor ability to backspace, so don't bother trying to use your arrow keys with it.  To see what bundles are running:
+To see what bundles are currently running in the Karaf container:
 ```
 g! lb
 START LEVEL 1
