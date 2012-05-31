@@ -49,15 +49,15 @@ Before you install this bundle, you'll need to add library bundles for the Scala
 
 Use `install` to load the bundles into the OSGi runtime, and then `start` them by bundle ID.  If you ever have to uninstall a bundle to replace it with a new version, use `uninstall` and the bundle ID to remove.
 ```
-karaf@root> install file:///<path to felix-akka-example code>/lib/org.scala-ide.scala.compiler_2.9.2.v20120330-163119-949a4804e4-vfinal.jar
+karaf@root> install file:///<path to akka-osgi project root>/lib/org.scala-ide.scala.compiler_2.9.2.v20120330-163119-949a4804e4-vfinal.jar
 Bundle ID: 50
-karaf@root> install file:///<path to felix-akka-example code>/lib/config-0.4.2-SNAPSHOT.jar
+karaf@root> install file:///<path to akka-osgi project root>/lib/config-0.4.2-SNAPSHOT.jar
 Bundle ID: 51
 karaf@root> start 51
-karaf@root> install file:///<path to felix-akka-example code>/lib/akka-actor-2.1-SNAPSHOT.jar
+karaf@root> install file:///<path to akka-osgi project root>/lib/akka-actor-2.1-SNAPSHOT.jar
 Bundle ID: 52
 karaf@root> start 52
-karaf@root> install file:///<path to felix-akka-example code>/target/scala-2.9.2/akka-osgi-poc_2.9.2-0.1-SNAPSHOT.jar
+karaf@root> install file:///<path to akka-osgi project root>/target/scala-2.9.2/akka-osgi-poc_2.9.2-0.1-SNAPSHOT.jar
 Bundle ID: 53
 ```
 The OSGi context should now look like this:
