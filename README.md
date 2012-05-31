@@ -52,10 +52,8 @@ karaf@root> install file:///<path to akka-osgi project root>/lib/org.scala-ide.s
 Bundle ID: 50
 karaf@root> install file:///<path to akka-osgi project root>/lib/config-0.4.2-SNAPSHOT.jar
 Bundle ID: 51
-karaf@root> start 51
 karaf@root> install file:///<path to akka-osgi project root>/lib/akka-actor-2.1-SNAPSHOT.jar
 Bundle ID: 52
-karaf@root> start 52
 karaf@root> install file:///<path to akka-osgi project root>/target/scala-2.9.2/akka-osgi-poc_2.9.2-0.1-SNAPSHOT.jar
 Bundle ID: 53
 ```
