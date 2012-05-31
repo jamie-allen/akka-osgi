@@ -11,7 +11,7 @@ resolvers ++= Seq("snapshots" at "http://repo.akka.io/snapshots",
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" % "akka-actor" % "2.1-SNAPSHOT",
-  "org.osgi" % "org.osgi.core" % "4.3.0" % "provided")
+  "org.osgi" % "org.osgi.core" % "4.2.0" % "provided")
 
 OsgiKeys.bundleActivator := Some("com.jamieallen.osgi.actor.Activator")
 

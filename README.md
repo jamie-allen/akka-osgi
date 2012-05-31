@@ -77,4 +77,9 @@ karaf@root> start 51
 karaf@root> start 52
 karaf@root> start 53
 ```
-That's it.  If everything has gone correctly, you will see that the MyActor instance has received two messages with values of "2" and "foo".
+If everything has gone correctly, you will see the following output:
+```
+<lots of configuration printed out, but ignore that>
+Received 2
+Received something else: foo
+```
