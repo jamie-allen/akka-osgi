@@ -12,7 +12,7 @@ I have not tried this under Equinox.
 
 ## Build and Bundle This Project
 1. Clone this repo
-2. Make sure you're using SBT v0.11.2 (required for the sbtosgi dependency).
+2. Make sure you're using SBT v0.11.3 (required for the sbtosgi 0.3.0-SNAPSHOT dependency, as it's not cross-built).
 3. At the command line at the root of the project, type "sbt"
 4. At the sbt prompt, type "update compile osgi-bundle"
 
@@ -57,7 +57,7 @@ karaf@root> start 51
 karaf@root> install file:///<path to felix-akka-example code>/lib/akka-actor-2.1-SNAPSHOT.jar
 Bundle ID: 52
 karaf@root> start 52
-karaf@root> install file:///<path to felix-akka-example code>/target/scala-2.9.2/felix-akka-poc_2.9.2-0.1-SNAPSHOT.jar
+karaf@root> install file:///<path to felix-akka-example code>/target/scala-2.9.2/akka-osgi-poc_2.9.2-0.1-SNAPSHOT.jar
 Bundle ID: 53
 ```
 The OSGi context should now look like this:
@@ -68,7 +68,7 @@ START LEVEL 100 , List Threshold: 50
 [  50] [Installed  ] [            ] [   80] Scala Library for Eclipse (2.9.2.v20120330-163119-949a4804e4-vfinal)
 [  51] [Installed  ] [            ] [   80] com.typesafe.config (0.4.2.SNAPSHOT)
 [  52] [Installed  ] [            ] [   80] com.typesafe.akka.actor (2.1.0.SNAPSHOT)
-[  53] [Installed  ] [            ] [   80] default.Felix Akka POC (0.1.0.SNAPSHOT)
+[  53] [Installed  ] [            ] [   80] default.Akka OSGi POC (0.1.0.SNAPSHOT)
 ```
 Start the bundles and see if the proof of concept works.
 ```

@@ -1,6 +1,6 @@
 scalaVersion := "2.9.2"
 
-name := "Felix Akka POC"
+name := "Akka OSGi POC"
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-optimize")
 
