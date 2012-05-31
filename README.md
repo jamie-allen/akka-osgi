@@ -51,11 +51,6 @@ To see what bundles are currently running in the Karaf container:
 ```
 karaf@root> list
 ```
-Set the initial bundle level to 2, and move the framework level to that level right away.  For more information about bundle start levels, [see here](http://aaronz-sakai.blogspot.com/2009/05/osgi-system-and-bundle-start-levels.html).
-```
-karaf@root> bundlelevel -i 2
-karaf@root> frameworklevel 2
-```
 Use `install` to load the bundles into the OSGi runtime, and then `start` them by bundle ID.  If you ever have to uninstall a bundle to replace it with a new version, use `uninstall` and the bundle ID to remove.
 ```
 karaf@root> install file:///<path to felix-akka-example code>/lib/org.scala-ide.scala.compiler_2.9.2.v20120330-163119-949a4804e4-vfinal.jar
@@ -76,9 +71,9 @@ The OSGi context should now look like this:
 karaf@root> bundle:list
 START LEVEL 100 , List Threshold: 50
    ID   State         Blueprint      Level  Name
-[  51] [Active     ] [            ] [   80] Scala Library for Eclipse (2.9.2.v20120330-163119-949a4804e4-vfinal)
-[  52] [Active     ] [            ] [   80] com.typesafe.config (0.4.2.SNAPSHOT)
-[  53] [Active     ] [            ] [   80] com.typesafe.akka.actor (2.1.0.SNAPSHOT)
-[  54] [Installed  ] [            ] [   80] default.Felix Akka POC (0.1.0.SNAPSHOT)
+[  50] [Active     ] [            ] [   80] Scala Library for Eclipse (2.9.2.v20120330-163119-949a4804e4-vfinal)
+[  51] [Active     ] [            ] [   80] com.typesafe.config (0.4.2.SNAPSHOT)
+[  52] [Active     ] [            ] [   80] com.typesafe.akka.actor (2.1.0.SNAPSHOT)
+[  53] [Installed  ] [            ] [   80] default.Felix Akka POC (0.1.0.SNAPSHOT)
 ```
 That's it.  If everything has gone correctly, you will see that the MyActor instance has received two messages with values of "2" and "foo".
