@@ -17,9 +17,9 @@ I have not tried this under Equinox.
 4. At the sbt prompt, type "update compile osgi-bundle"
 
 ## Installing Karaf
-How to install them is explained below.  This information is shamelessly stolen from the sbtosgi-example project referenced above, though altered to reflect the runtime and requirements of this project.
+This information was shamelessly stolen from the sbtosgi-example project referenced above, though altered to reflect the runtime and requirements of this project.
 
-To download Apache Karaf, visit [this page](http://karaf.apache.org/index/community/download.html) and download the appropriate distribution for your environment.  Unzip it somewhere on your local drive, then go to that folder and start Karaf.
+To download Apache Karaf, visit [this page](http://karaf.apache.org/index/community/download.html) and get the appropriate distribution for your environment.  Untar it somewhere on your local drive, then go to that folder and start Karaf.
 ```
 $ tar -xzf apache-karaf-2.2.7.tar.gz
 $ cd apache-karaf-2.2.7
@@ -47,15 +47,10 @@ For a quick primer on how to use Karaf, [see here](http://karaf.apache.org/manua
 ## Start the OSGi Container and Install the Required Bundles
 Before you install this bundle, you'll need to add library bundles for the Scala language library, Akka-Actor and Typesafe Config as dependencies.  See the lib folder for my pre-built artifacts, in case you don't want to build your own.  Note that the Akka bundle is a 2.1-SNAPSHOT as of revision "35aaa220aa0c65333e75a7c199fe9ebc782c1b89" on May 29, 2012, but the dependency on Typesafe Config has been changed to 0.4.2-SNAPSHOT.  Also, the Config is a 0.4.2-SNAPSHOT as of revision "b3ac8d0539d1df60ff3e5daaf5d619411f426f24" on May 24, 2012.  The Scala library is from my Scala IDE Eclipse distribution.
 
-To see what bundles are currently running in the Karaf container:
-```
-karaf@root> list
-```
 Use `install` to load the bundles into the OSGi runtime, and then `start` them by bundle ID.  If you ever have to uninstall a bundle to replace it with a new version, use `uninstall` and the bundle ID to remove.
 ```
 karaf@root> install file:///<path to felix-akka-example code>/lib/org.scala-ide.scala.compiler_2.9.2.v20120330-163119-949a4804e4-vfinal.jar
 Bundle ID: 50
-karaf@root> start 50
 karaf@root> install file:///<path to felix-akka-example code>/lib/config-0.4.2-SNAPSHOT.jar
 Bundle ID: 51
 karaf@root> start 51
@@ -64,16 +59,22 @@ Bundle ID: 52
 karaf@root> start 52
 karaf@root> install file:///<path to felix-akka-example code>/target/scala-2.9.2/felix-akka-poc_2.9.2-0.1-SNAPSHOT.jar
 Bundle ID: 53
-karaf@root> start 53
 ```
 The OSGi context should now look like this:
 ```
-karaf@root> bundle:list
+karaf@root> list
 START LEVEL 100 , List Threshold: 50
    ID   State         Blueprint      Level  Name
-[  50] [Active     ] [            ] [   80] Scala Library for Eclipse (2.9.2.v20120330-163119-949a4804e4-vfinal)
-[  51] [Active     ] [            ] [   80] com.typesafe.config (0.4.2.SNAPSHOT)
-[  52] [Active     ] [            ] [   80] com.typesafe.akka.actor (2.1.0.SNAPSHOT)
+[  50] [Installed  ] [            ] [   80] Scala Library for Eclipse (2.9.2.v20120330-163119-949a4804e4-vfinal)
+[  51] [Installed  ] [            ] [   80] com.typesafe.config (0.4.2.SNAPSHOT)
+[  52] [Installed  ] [            ] [   80] com.typesafe.akka.actor (2.1.0.SNAPSHOT)
 [  53] [Installed  ] [            ] [   80] default.Felix Akka POC (0.1.0.SNAPSHOT)
+```
+Start the bundles and see if the proof of concept works.
+```
+karaf@root> start 50
+karaf@root> start 51
+karaf@root> start 52
+karaf@root> start 53
 ```
 That's it.  If everything has gone correctly, you will see that the MyActor instance has received two messages with values of "2" and "foo".
