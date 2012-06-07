@@ -43,10 +43,12 @@ class ActorMgr extends Actor {
       "file:///Users/jamie/sandbox/akka-osgi/target/scala-2.9.2/akka-osgi-poc_2.9.2-0.1-SNAPSHOT.jar")
 
     // Install and start each bundle; the for comprehension over the Option[BundleContext] provides safety if none exists.
-    for {
-      bc <- bundleContext
+    val installedBundles = for {
       bTI <- bundlesToInstall
-    } bc.installBundle(bTI).start
+      bc <- bundleContext
+    } yield (bc.installBundle(bTI))
+
+    installedBundles map (_.start)
 
     println("Context started, bundles installed and started: ")
     karaf map (_.getBundleContext.getBundles.foreach(println))
