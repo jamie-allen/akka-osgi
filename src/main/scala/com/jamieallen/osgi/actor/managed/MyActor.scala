@@ -1,4 +1,4 @@
-package com.jamieallen.osgi.actor
+package com.jamieallen.osgi.actor.managed
 
 import akka.actor.Actor
 

@@ -43,7 +43,9 @@ karaf@root>
 ```
 For a quick primer on how to use Karaf, [see here](http://karaf.apache.org/manual/latest-2.2.x/quick-start.html).
 
-## Start the OSGi Container and Install the Required Bundles
+# Managed Bundles
+
+## Start the OSGi Container and Install the Required Bundles Manually
 Before you install this bundle, you'll need to add library bundles for the Scala language library, Akka-Actor and Typesafe Config as dependencies.  See the lib folder for my pre-built artifacts, in case you don't want to build your own.  Note that the Akka bundle is a 2.1-SNAPSHOT as of revision "35aaa220aa0c65333e75a7c199fe9ebc782c1b89" on May 29, 2012, but the dependency on Typesafe Config has been changed to 0.4.2-SNAPSHOT.  Also, the Config is a 0.4.2-SNAPSHOT as of revision "b3ac8d0539d1df60ff3e5daaf5d619411f426f24" on May 24, 2012.  The Scala library is from my Scala IDE Eclipse distribution.
 
 Use `install` to load the bundles into the OSGi runtime, and then `start` them by bundle ID.  If you ever have to uninstall a bundle to replace it with a new version, use `uninstall` and the bundle ID to remove.
@@ -80,3 +82,6 @@ If everything has gone correctly, you will see the following output:
 Received 2
 Received something else: foo
 ```
+
+# Programmatically Starting the Karaf Context and Installing Bundles
+In this case, an Akka actor is used to start and manage a Karaf container.  It does everything the Managed Bundles do, except within the context of another Akka Actor.  To see this in action, run the org.jamieallen.osgi.actor.launcher.KarafLauncher source file in Eclipse, IntelliJ, the command line, etc

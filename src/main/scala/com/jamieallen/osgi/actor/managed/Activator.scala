@@ -1,10 +1,14 @@
-package com.jamieallen.osgi.actor
+package com.jamieallen.osgi.actor.managed
 
 import org.osgi.framework.BundleActivator
 import org.osgi.framework.BundleContext
-import akka.actor.{ ActorSystem, Props, actorRef2Scala }
+
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
+
+import akka.actor.ActorSystem
+import akka.actor.Props
+import akka.actor.actorRef2Scala
 
 class Activator extends BundleActivator {
   var system1: Option[ActorSystem] = None
