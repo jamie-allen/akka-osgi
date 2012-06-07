@@ -7,7 +7,7 @@ scalacOptions ++= Seq("-unchecked", "-deprecation", "-optimize")
 seq(osgiSettings: _*)
 
 resolvers ++= Seq("ebay open source" at "http://ebayopensource.org/nexus/content/groups/public",
-				          "spring" at "http://repository.springsource.com/maven/bundles/release",
+                  "spring" at "http://repository.springsource.com/maven/bundles/release",
                   "snapshots" at "http://repo.akka.io/snapshots",
                   "releases"  at "http://repo.akka.io/releases")
 
