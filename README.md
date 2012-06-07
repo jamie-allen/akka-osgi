@@ -87,3 +87,5 @@ Received something else: foo
 In this case, an Akka actor is used to start and manage a Karaf container.  It does everything the Managed Bundles do, except within the context of another Akka Actor.  To see this in action, run the org.jamieallen.osgi.actor.launcher.KarafLauncher source file in Eclipse, IntelliJ, the command line, etc.
 
 Note that using the apache-karaf dependency required resolving several odd transitive dependencies.  Four Spring bundles had group IDs that only work if you add a resolver for the repository at Springsource itself to get them.  And there is an Eclipse dependency that I only managed to find with a resolver for eBay's open source repo.
+
+If you want to execute this class, please make sure you do perform this command first at the project root: `sbt update compile osgi-bundle`
