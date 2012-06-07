@@ -42,11 +42,12 @@ class ActorMgr extends Actor {
       "file:///Users/jamie/sandbox/akka-osgi/lib/akka-actor-2.1-SNAPSHOT.jar",
       "file:///Users/jamie/sandbox/akka-osgi/target/scala-2.9.2/akka-osgi-poc_2.9.2-0.1-SNAPSHOT.jar")
 
-    // Install and start each bundle; the for comprehension over the Option[BundleContext] provides safety if none exists.
+    // Install and start each bundle; the for comprehension over the Option[BundleContext] provides safety - if none
+    // exists, no bundles will be yielded into the list of installedBundles, and therefore none will be started next.
     val installedBundles = for {
       bTI <- bundlesToInstall
       bc <- bundleContext
-    } yield (bc.installBundle(bTI))
+    } yield bc.installBundle(bTI)
 
     installedBundles map (_.start)
 
