@@ -88,4 +88,19 @@ In this case, an Akka actor is used to start and manage a Karaf container.  It d
 
 Note that using the apache-karaf dependency required resolving several odd transitive dependencies.  Four Spring bundles had group IDs that only work if you add a resolver for the repository at Springsource itself to get them.  And there is an Eclipse dependency that I only managed to find with a resolver for eBay's open source repo.
 
-If you want to execute this class, please make sure you do perform this command first at the project root: `sbt update compile osgi-bundle`
+If you want to execute this class, please make sure you perform this command first at the project root: `sbt update compile osgi-bundle`
+
+Results of executing this should show:
+```
+ActorMgr about to be started, initializing Karaf framework.
+<Lots of configuration output that you can ignore>
+Received 2
+Received something else: foo
+Context started, bundles installed and started: 
+org.eclipse.osgi_3.6.2.R36x_v20110210 [0]
+org.scala-ide.scala.library_2.9.2.v20120330-163119-949a4804e4-vfinal [2]
+com.typesafe.config_0.4.2.SNAPSHOT [3]
+com.typesafe.akka.actor_2.1.0.SNAPSHOT [4]
+default.Akka OSGi POC_0.1.0.SNAPSHOT [5]
+Stopping ActorMgr
+```
