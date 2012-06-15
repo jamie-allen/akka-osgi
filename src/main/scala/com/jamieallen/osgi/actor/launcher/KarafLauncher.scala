@@ -60,7 +60,6 @@ class ActorMgr extends Actor {
 
   override def postStop = {
     println("Stopping ActorMgr")
-    installedBundles map (_.uninstall)
     karaf map (_.stop())
     karaf map (_.waitForStop(0))
   }
