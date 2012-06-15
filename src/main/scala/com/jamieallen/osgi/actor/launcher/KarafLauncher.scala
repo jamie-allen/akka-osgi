@@ -22,6 +22,9 @@ class ActorMgr extends Actor {
   // Principle keeps me from having to check whether or not the Framework exists before I want to do something.
   var karaf: Option[Framework] = None
 
+  // Need references to the bundles we've added so we can get rid of them on shutdown.
+  var installedBundles: List[Bundle] = List()
+
   override def preStart = {
     println("ActorMgr about to be started, initializing Karaf framework.")
 
@@ -32,7 +35,7 @@ class ActorMgr extends Actor {
     karaf = Some(factory.newFramework(new HashMap[String, AnyRef]()))
     karaf map (_.start)
 
-    val bundleContext: Option[BundleContext] = karaf map (_.getBundleContext())
+    val bundleContext: Option[BundleContext] = karaf map (_.getBundleContext)
 
     // We could make this work from command line arguments rather 
     // than a static list, but this is fine for our purposes here.
@@ -44,7 +47,7 @@ class ActorMgr extends Actor {
 
     // Install and start each bundle; the for comprehension over the Option[BundleContext] provides safety - if none
     // exists, no bundles will be yielded into the list of installedBundles, and therefore none will be started next.
-    val installedBundles = for {
+    installedBundles = for {
       bTI <- bundlesToInstall
       bc <- bundleContext
     } yield bc.installBundle(bTI)
@@ -57,6 +60,7 @@ class ActorMgr extends Actor {
 
   override def postStop = {
     println("Stopping ActorMgr")
+    installedBundles map (_.uninstall)
     karaf map (_.stop())
     karaf map (_.waitForStop(0))
   }

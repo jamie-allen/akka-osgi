@@ -24,7 +24,7 @@ class Activator extends BundleActivator {
     println("Got config: " + config)
     system1 = Some(ActorSystem("System1", config, classLoader))
 
-    val myActor = system1.get.actorOf(Props[MyActor])
+    val myActor = system1.get.actorOf(Props(new MyActor("FOO")))
 
     Thread.sleep(100)
     myActor ! 2

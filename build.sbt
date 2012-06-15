@@ -18,4 +18,4 @@ libraryDependencies ++= Seq(
 
 OsgiKeys.bundleActivator := Some("com.jamieallen.osgi.actor.managed.Activator")
 
-OsgiKeys.exportPackage := Seq("com.jamieallen.osgi.actor")
+OsgiKeys.exportPackage := Seq("com.jamieallen.osgi.actor.managed")
