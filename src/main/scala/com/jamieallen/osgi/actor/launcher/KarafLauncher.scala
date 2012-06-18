@@ -2,8 +2,10 @@ package com.jamieallen.osgi.actor.launcher
 
 import akka.actor.{ Actor, ActorSystem, Props }
 import java.util.{ HashMap, ServiceLoader }
-import org.osgi.framework.{ Bundle, BundleContext }
+import org.osgi.framework.{ Bundle, BundleContext, BundleException }
 import org.osgi.framework.launch.{ Framework, FrameworkFactory }
+import akka.event.Logging
+import scala.util.control.Exception._
 
 /**
  * This is a simple example of how to use an Akka actor to manage the entire
@@ -18,6 +20,8 @@ object KarafLauncher extends App {
 }
 
 class ActorMgr extends Actor {
+  val log = Logging(context.system, this)
+
   // By declaring this as an option, I get safe processing throughout this code as the Uniform Return Type 
   // Principle keeps me from having to check whether or not the Framework exists before I want to do something.
   var karaf: Option[Framework] = None
@@ -26,7 +30,7 @@ class ActorMgr extends Actor {
   var installedBundles: List[Bundle] = List()
 
   override def preStart = {
-    println("ActorMgr about to be started, initializing Karaf framework.")
+    log.debug("ActorMgr about to be started, initializing Karaf framework.")
 
     // Note that this line, where we get an iterator and call next, drives me crazy.  However, if
     // no factory can be loaded, an exception will be thrown with no next element in the iterator,
@@ -36,6 +40,19 @@ class ActorMgr extends Actor {
     karaf map (_.start)
 
     val bundleContext: Option[BundleContext] = karaf map (_.getBundleContext)
+
+    // Uninstall existing bundles
+    bundleContext map (_.getBundles foreach { bundle =>
+      log.info(bundle.getSymbolicName)
+      bundle.getSymbolicName match {
+        case "org.scala-ide.scala.library" | "com.typesafe.config" | "com.typesafe.akka.actor" | "default.Akka OSGi POC" => {
+          log.info("Uninstalling bundle: " + bundle.getSymbolicName)
+          bundle.uninstall
+        }
+        case _ =>
+      }
+      //      ignoring(classOf[BundleException]) { bundle.uninstall }
+    })
 
     // We could make this work from command line arguments rather 
     // than a static list, but this is fine for our purposes here.
@@ -54,17 +71,17 @@ class ActorMgr extends Actor {
 
     installedBundles map (_.start)
 
-    println("Context started, bundles installed and started: ")
-    karaf map (_.getBundleContext.getBundles.foreach(println))
+    log.debug("Context started, bundles installed and started: ")
+    karaf map (_.getBundleContext.getBundles.foreach(b => log.debug(b.getSymbolicName)))
   }
 
   override def postStop = {
-    println("Stopping ActorMgr")
+    log.debug("Stopping ActorMgr")
     karaf map (_.stop())
     karaf map (_.waitForStop(0))
   }
 
   def receive = {
-    case msg: String => println(msg)
+    case msg: String => log.info(msg)
   }
 }

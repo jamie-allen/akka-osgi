@@ -27,7 +27,7 @@ class Activator extends BundleActivator {
     val myActor = system1.get.actorOf(Props(new MyActor("FOO")))
 
     Thread.sleep(100)
-    myActor ! 2
+    myActor ! 5
     myActor ! "foo"
   }
 
